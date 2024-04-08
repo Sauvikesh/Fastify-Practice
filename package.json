@@ -2,17 +2,21 @@
   "name": "fastify-practice",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
-  "type": "module",
+  "main": "server.ts",
   "scripts": {
     "test": "test",
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node server.ts",
+    "dev": "nodemon --exec ts-node server.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^20.12.4",
     "fastify": "^4.26.2",
-    "nodemon": "^3.1.0"
+    "typescript": "^5.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2"
   }
 }
