@@ -7,7 +7,7 @@ export async function dataRouter(fastify: FastifyInstance) {
 
     // basic routes
     fastify.get('/', function handler (request, reply) {
-        reply.send({ hello: "world" })
+        reply.send({ app: 'app name' })
     })
   
     fastify.get('/allData', function handler (request, reply) {
