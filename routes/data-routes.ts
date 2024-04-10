@@ -1,5 +1,6 @@
 import { FastifyInstance } from "fastify"
 import data from "../data"
+import { addOneHandler } from "../controllers/data-controller"
 
 export async function dataRouter(fastify: FastifyInstance) {
 
@@ -35,10 +36,5 @@ export async function dataRouter(fastify: FastifyInstance) {
         }
       }
 
-    fastify.post('/addOne', addOneOpts, async (request, reply) => {
-        const requestBody: any = request.body;
-        data.push(requestBody);
-        reply.send(requestBody);
-      })
-
+    fastify.post('/addOne', addOneOpts, addOneHandler);
 }
