@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify"
 import data from "../data"
 import { addOneHandler } from "../controllers/data-controller"
+import { addOneQueryString } from "../schemas/data-schema"
 
 export async function dataRouter(fastify: FastifyInstance) {
 
@@ -24,17 +25,5 @@ export async function dataRouter(fastify: FastifyInstance) {
     }
     })
 
-    const addOneOpts = {
-        schema: {
-          body: {
-            type: 'object',
-            properties: {
-              id: { type: 'number' },
-              name: { type: 'string' }
-            }
-          }
-        }
-      }
-
-    fastify.post('/addOne', addOneOpts, addOneHandler);
+    fastify.post('/addOne', addOneQueryString, addOneHandler);
 }
