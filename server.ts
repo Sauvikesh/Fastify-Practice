@@ -9,13 +9,7 @@ const fastify = Fastify({
   logger: true
 })
 
-// Register dataRouter with prefix
-try {
-  fastify.register(dataRouter);
-  fastify.log.info('dataRouter registered successfully with prefix /api');
-} catch (err) {
-  fastify.log.error(`Error registering dataRouter: ${err}`);
-}
+fastify.register(dataRouter);
 
 // Run the server!
 fastify.listen({ port: PORT }, (err) => {

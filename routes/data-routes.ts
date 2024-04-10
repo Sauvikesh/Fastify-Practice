@@ -23,4 +23,22 @@ export async function dataRouter(fastify: FastifyInstance) {
     }
     })
 
+    const addOneOpts = {
+        schema: {
+          body: {
+            type: 'object',
+            properties: {
+              id: { type: 'number' },
+              name: { type: 'string' }
+            }
+          }
+        }
+      }
+
+    fastify.post('/addOne', addOneOpts, async (request, reply) => {
+        const requestBody: any = request.body;
+        data.push(requestBody);
+        reply.send(requestBody);
+      })
+
 }
