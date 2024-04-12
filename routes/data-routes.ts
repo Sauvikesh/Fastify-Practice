@@ -5,9 +5,16 @@ import { addOneQueryString } from "../schemas/data-schema"
 
 export async function dataRouter(fastify: FastifyInstance) {
 
+    fastify.addHook("onRequest", async () => {
+        fastify.log.info("recieved a request");
+    })
+    fastify.addHook("onResponse", async () => {
+        fastify.log.info("sent a response");
+    })
+
     // basic routes
     fastify.get('/', function handler (request, reply) {
-        reply.send({ app: 'app name' })
+        reply.send({ app: 'name' })
     })
   
     fastify.get('/allData', function handler (request, reply) {
