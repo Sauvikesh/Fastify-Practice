@@ -5,6 +5,11 @@ import { addOneQueryString } from "../schemas/data-schema"
 
 export async function dataRouter(fastify: FastifyInstance) {
 
+    fastify.addHook('onReady', async function () {
+        // Some async code
+        console.log("server is READY")
+    })
+
     fastify.addHook("onRequest", async () => {
         fastify.log.info("recieved a request");
     })
