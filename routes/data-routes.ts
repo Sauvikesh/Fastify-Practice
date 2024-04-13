@@ -4,23 +4,6 @@ import { addOneHandler } from "../controllers/data-controller"
 import { addOneQueryString } from "../schemas/data-schema"
 
 export async function dataRouter(fastify: FastifyInstance) {
-
-    fastify.addHook('onReady', async function () {
-        // Some async code
-        console.log("server is READY")
-    })
-
-    fastify.addHook("onRequest", async () => {
-        fastify.log.info("recieved a request");
-    })
-    fastify.addHook("onResponse", async () => {
-        fastify.log.info("sent a response");
-    })
-
-    // basic routes
-    fastify.get('/', function handler (request, reply) {
-        reply.send({ app: 'name' })
-    })
   
     fastify.get('/allData', function handler (request, reply) {
         reply.send({ data: data })
