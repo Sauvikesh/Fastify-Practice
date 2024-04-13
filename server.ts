@@ -20,13 +20,11 @@ export async function startServer() {
     fastify.decorateRequest('app', 'cool')
     
     fastify.addHook('onReady', async function () {
-      // Some async code
       await mongoRun();
       console.log("server is READY")
     })
 
     fastify.addHook('onClose', async function () {
-      // Some async code
       await mongoClose();
       console.log("server is closed")
     })
@@ -47,8 +45,7 @@ export async function startServer() {
         process.exit(1)
       }
     })
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error);
   }
 }

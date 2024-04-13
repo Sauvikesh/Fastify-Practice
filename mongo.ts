@@ -1,7 +1,5 @@
 const { MongoClient } = require("mongodb");
 
-
-// Replace the uri string with your connection string.
 const uri =
   "mongodb+srv://bruhmoment:pokemon@cluster0.uplpab1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
@@ -32,7 +30,7 @@ export async function findUser(username: string) {
         const query = {
             name: username
         }
-        console.log("query", query);
+
         const user = await client.db("fastifyPractice").collection("users").findOne(query);
 
         if (!user) {
@@ -40,8 +38,7 @@ export async function findUser(username: string) {
         } else {
             return user;
         }
-    }
-    catch (error) {
+    } catch (error) {
         console.error("some error was found when trying to make request: ", error);
 
         throw error;
