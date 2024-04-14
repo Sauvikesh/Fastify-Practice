@@ -44,3 +44,21 @@ export async function findUser(username: string) {
         throw error;
     }
 }
+
+export async function getAllUsers() {
+
+  try {
+
+      const users = await client.db("fastifyPractice").collection("users").find({}).toArray();
+
+      if (!users) {
+          return null;
+      } else {
+          return users;
+      }
+  } catch (error) {
+      console.error("some error was found when trying to make request: ", error);
+
+      throw error;
+  }
+}

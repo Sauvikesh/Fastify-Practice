@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { findUser } from "../mongo";
+import { findUser, getAllUsers } from "../mongo";
 
-export async function getUserhandler (request: any,
+export async function getUserHandler (request: any,
     reply: FastifyReply) {
         
     const username = request.params.username;
@@ -9,4 +9,12 @@ export async function getUserhandler (request: any,
     const user = await findUser(username);
 
     reply.send({ userData: user })
+}
+
+export async function getAllUsersHandler (request: any,
+    reply: FastifyReply) {
+        
+    const users = await getAllUsers();
+
+    reply.send({ allUsers: users })
 }
