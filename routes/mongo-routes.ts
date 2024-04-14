@@ -4,10 +4,24 @@ import { createUserHandler, getAllUsersHandler, getUserHandler } from "../contro
 
 export async function mongoRouter(fastify: FastifyInstance) {
 
-    fastify.get('/getUser/:username', singleUserQueryString, getUserHandler);
+    fastify.route({
+        method: 'GET',
+        url: '/getUser/:username',
+        schema: singleUserQueryString,
+        handler: getUserHandler
+    })
 
-    fastify.post('/createUser/:username', singleUserQueryString, createUserHandler);
+    fastify.route({
+        method: 'POST',
+        url: '/createUser/:username',
+        schema: singleUserQueryString,
+        handler: createUserHandler
+    })
 
-    fastify.get('/getAllUsers', getAllUsersHandler);
+    fastify.route({
+        method: 'GET',
+        url: '/getAllUsers',
+        handler: getAllUsersHandler
+    })
 
 }
