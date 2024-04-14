@@ -12,19 +12,14 @@ const PORT = 3000;
 export async function startServer() {
   // creates a fastify instance which does everything
   const fastify = Fastify({
-    logger: true
+    logger: false
   })
 
   try {
-
-    fastify.decorateRequest("app", 'cool')
-    
     // basic route
     fastify.get('/', function handler (request, reply) {
       reply.send({ app: 'name' })
-  })
-
-    await fastify.register(decorateName);
+    })
 
     // mongo db connection plugin
     await fastify.register(runCloseMongo);
