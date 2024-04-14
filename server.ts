@@ -17,7 +17,7 @@ export async function startServer() {
 
   try {
 
-    fastify.decorateRequest('app', 'cool')
+    fastify.decorateRequest("app", 'cool')
     
     fastify.addHook('onReady', async function () {
       await mongoRun();
