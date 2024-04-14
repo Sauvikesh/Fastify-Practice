@@ -1,8 +1,8 @@
 // Require the framework and instantiate it
 import Fastify from 'fastify';
-import { mongoClose, mongoRun } from './mongo';
 import { dataRouter } from './routes/data-routes';
 import { decorateName } from './plugins/decorate-name';
+import { runCloseMongo } from './plugins/run-close-mongo';
 import { mongoRouter } from './routes/mongo-routes';
 
 const PORT = 3000;
@@ -19,22 +19,17 @@ export async function startServer() {
 
     fastify.decorateRequest("app", 'cool')
     
-    fastify.addHook('onReady', async function () {
-      await mongoRun();
-      console.log("server is READY")
-    })
-
-    fastify.addHook('onClose', async function () {
-      await mongoClose();
-      console.log("server is closed")
-    })
-  
-    // basic routes
+    // basic route
     fastify.get('/', function handler (request, reply) {
       reply.send({ app: 'name' })
   })
 
     await fastify.register(decorateName);
+
+    // mongo db connection plugin
+    await fastify.register(runCloseMongo);
+
+    // route plugins
     await fastify.register(dataRouter);
     await fastify.register(mongoRouter)
 
