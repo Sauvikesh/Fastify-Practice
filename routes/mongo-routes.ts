@@ -1,14 +1,9 @@
 import { FastifyInstance, FastifyRequest } from "fastify"
 import { findUser } from "../mongo"
+import { getUserQueryString } from "../schemas/mongo-schemas";
+import { getUserhandler } from "../controllers/mongo-controller";
 
 export async function mongoRouter(fastify: FastifyInstance) {
 
-    fastify.get('/getUser/:username', async function handler (request: any, reply) {
-        const username = request.params.username;
-
-        const user = await findUser(username);
-
-        reply.send({ userData: user })
-    })
-    
+    fastify.get('/getUser/:username', getUserQueryString, getUserhandler);
 }
