@@ -25,7 +25,6 @@ export async function mongoClose() {
   }
 
 export async function findUser(username: string) {
-
     try {
         const query = {
             name: username
@@ -46,7 +45,6 @@ export async function findUser(username: string) {
 }
 
 export async function getAllUsers() {
-
   try {
 
       const users = await client.db("fastifyPractice").collection("users").find({}).toArray();
@@ -55,6 +53,26 @@ export async function getAllUsers() {
           return null;
       } else {
           return users;
+      }
+  } catch (error) {
+      console.error("some error was found when trying to make request: ", error);
+
+      throw error;
+  }
+}
+
+export async function createUser(username: string) {
+  try {
+      const newUser = {
+          name: username
+      }
+
+      const user = await client.db("fastifyPractice").collection("users").insertOne(newUser);
+
+      if (!user) {
+          return null;
+      } else {
+          return user;
       }
   } catch (error) {
       console.error("some error was found when trying to make request: ", error);

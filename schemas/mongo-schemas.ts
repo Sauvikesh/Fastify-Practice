@@ -1,4 +1,4 @@
-export const getUserQueryString = {
+export const singleUserQueryString = {
     schema: {
       params: {
         type: 'object',
